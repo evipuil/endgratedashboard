@@ -21,3 +21,6 @@ def google_analytics():
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder) # convert plot to JSON
 
     return render_template('google_analytics.html', plot=graphJSON) #return output page
+
+if __name__ == '__main__':
+    app.run(debug=True) # run application
