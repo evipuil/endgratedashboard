@@ -4,10 +4,11 @@ import plotly
 import plotly.graph_objects as go
 import atexit
 import requests
+import keys
 
 app = Flask(__name__) # defines web application
 app.config['SECRET_KEY'] = 'acad04e0262e72720856b95f9b9e74a2990314e0009e8d36' # creates secret key
-app.config["ENDGRATE_API_KEY"] = "5f2d12be-993a-42c0-957c-e3412640c485"
+app.config["ENDGRATE_API_KEY"] = keys.ENDGRATE_API_KEY
 
 payload = {
     "provider": "googleanalytics",
