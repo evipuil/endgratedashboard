@@ -9,29 +9,34 @@ Google Analytics Data
 {% block content %}
 
 <h1>Google Analytics Data</h1>
-{% if plot != None %}
 <div class="container">
         <div class="col-md-6">
-            <div class="chart" id="bargraph">
-                <script>
-                    var graphs = {{plot | safe}};
 
-                    Plotly.plot('bargraph',graphs,{});
-                </script>
-            </div>
+
+        {% if do_auth == True %}
+
+        <button onclick="window.open('/auth', '_blank').focus()">
+            Connect Endgrate to Google Analytics
+        </button>
+
+        {% else %}
+
+        <script>
+            let dataReceived = "";
+
+            fetch("/get_data")
+            .then(dataJson => {
+                dataReceived = JSON.parse(dataJson)
+            })
+
+            console.log(dataReceived)
+        </script>
+
+        {% endif %}
+
         </div>
     </div>
 </div>
-{% else %}
-
-<button onclick="window.open('/auth', '_blank').focus()">
-    Connect Endgrate to Google Analytics
-</button>
-
-
-{% endif %}
-<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/plots.js') }}"></script>
 
 
 {% endblock %}
